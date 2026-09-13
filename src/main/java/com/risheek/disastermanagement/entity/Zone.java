@@ -2,6 +2,7 @@ package com.risheek.disastermanagement.entity;
 
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -21,11 +22,11 @@ public class Zone {
     @Column(nullable = false)
     private String name;
 
-    @NotBlank(message = "Enter approximate population density")
+    @NotNull(message = "Enter approximate population density")
     @Column(nullable = false)
     private Long populationDensity;
 
-    @NotBlank(message = "Enter current severity score")
+    @NotNull(message = "Enter current severity score")
     @Column(nullable = false)
     private Integer severityScore;
 
