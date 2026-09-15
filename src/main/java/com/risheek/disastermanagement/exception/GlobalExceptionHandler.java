@@ -152,11 +152,11 @@ public class GlobalExceptionHandler {
     ){
         ErrorResponse error = new ErrorResponse(
                 LocalDateTime.now(),
-                HttpStatus.CONFLICT.value(),
+                HttpStatus.NOT_FOUND.value(),
                 "Zone Does Not exist",
                 ex.getMessage(),
                 request.getRequestURI()
         );
-        return  ResponseEntity.status(HttpStatus.CONFLICT).body(error);
+        return  ResponseEntity.status(HttpStatus.NOT_FOUND).body(error);
     }
 }
