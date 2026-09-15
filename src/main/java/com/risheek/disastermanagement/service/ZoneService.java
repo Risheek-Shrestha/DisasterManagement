@@ -74,4 +74,11 @@ public class ZoneService {
         zoneRepository.delete(zone);
 
     }
+
+    public Zone getZoneByName(@Valid String name) {
+
+        return zoneRepository.findByName(name)
+                .orElseThrow(() -> new ZoneNotFoundException("Zone does not exists"));
+
+    }
 }

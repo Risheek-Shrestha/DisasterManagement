@@ -3,8 +3,10 @@ package com.risheek.disastermanagement.controller;
 import com.risheek.disastermanagement.dto.UserResponse;
 import com.risheek.disastermanagement.dto.ZoneRequest;
 import com.risheek.disastermanagement.dto.ZoneResponse;
+import com.risheek.disastermanagement.entity.Zone;
 import com.risheek.disastermanagement.service.ZoneService;
 import jakarta.validation.Valid;
+import org.apache.coyote.Response;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -28,6 +30,11 @@ public class ZoneController {
     @GetMapping
     public ResponseEntity<List<ZoneResponse>> getCurrentZones() {
         return ResponseEntity.ok(zoneService.getCurrentZones());
+    }
+
+    @GetMapping("/{name}")
+    public ResponseEntity<Zone> getZoneByName(@Valid @PathVariable String name){
+        return ResponseEntity.ok(zoneService.getZoneByName(name));
     }
 
     @PutMapping
