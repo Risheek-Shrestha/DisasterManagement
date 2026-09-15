@@ -128,4 +128,35 @@ public class GlobalExceptionHandler {
         );
         return ResponseEntity.status(HttpStatus.CONFLICT).body(error);
     }
+
+    @ExceptionHandler(ZoneAlreadyExistsException.class)
+    ResponseEntity<ErrorResponse> handleZoneAlreadyExists(
+            ZoneAlreadyExistsException ex,
+            HttpServletRequest request
+    ) {
+        ErrorResponse error = new ErrorResponse(
+                LocalDateTime.now(),
+                HttpStatus.CONFLICT.value(),
+                "Zone already Exists",
+                ex.getMessage(),
+                request.getRequestURI()
+        );
+
+        return ResponseEntity.status(HttpStatus.CONFLICT).body(error);
+    }
+
+    @ExceptionHandler(ZoneNotFoundException.class)
+    ResponseEntity<ErrorResponse> handleZoneNotFound(
+            ZoneNotFoundException ex,
+            HttpServletRequest request
+    ){
+        ErrorResponse error = new ErrorResponse(
+                LocalDateTime.now(),
+                HttpStatus.CONFLICT.value(),
+                "Zone Does Not exist",
+                ex.getMessage(),
+                request.getRequestURI()
+        );
+        return  ResponseEntity.status(HttpStatus.CONFLICT).body(error);
+    }
 }

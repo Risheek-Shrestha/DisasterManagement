@@ -6,6 +6,7 @@ import lombok.Data;
 @Data
 public class ZoneRequest {
 
+    private Long id;
     private String name;
     private Long populationDensity;
     private Integer severityScore;

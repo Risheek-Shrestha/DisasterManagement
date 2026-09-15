@@ -52,11 +52,9 @@ public class ZoneService {
 
     public ZoneResponse updateZone(@Valid ZoneRequest zoneRequest) {
 
-        if(!zoneRepository.existsByName(zoneRequest.getName())){
-            throw new ZoneNotFoundException("Zone Does Not Exists");
-        }
+        Zone zone = zoneRepository.findByName(zoneRequest.getName())
+                .orElseThrow(()-> new ZoneNotFoundException("Zone Does Not Exist"));
 
-        Zone zone = zoneRepository.findByName(zoneRequest.getName());
         zone.setPopulationDensity(zoneRequest.getPopulationDensity());
         zone.setSeverityScore(zoneRequest.getSeverityScore());
         zone.setSeverityHistory(zoneRequest.getSeverityHistory());
